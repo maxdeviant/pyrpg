@@ -16,7 +16,15 @@ class Creature(Entity):
 	def attack(self, target):
 		damage = self.power * random.randrange(0, 21) / 10.0
 		target.currHP = target.currHP - damage if target.currHP - damage >= 0 else 0
-		print "%s hit %s for %d damage." % (self.name, target.name, damage)
+
+		if damage > self.power * 1.25:
+			status = "Critical hit! "
+		elif damage < self.power * .25:
+			status = "Glancing blow! "
+		else:
+			status = ""
+
+		print "%s%s hit %s for %d damage." % (status, self.name, target.name, damage)
 
 	def toString(self):
 		return "%s: %d/%d" % (self.name, self.currHP, self.maxHP)
@@ -44,14 +52,21 @@ def battle(a, b):
 	else:
 		order = [b, a]
 
+	print a.toString() + "\t" + b.toString()
+	print order[0].name + " attacks first!"
+
+	turn = 0
 	while a.currHP > 0 and b.currHP > 0:
-		if order[0].type != "Structure":
+		turn += 1
+		print "[Turn %d]-----------------------" % (turn)
+
+		if order[0].type == "Creature":
 			order[0].attack(order[1])
 
 		print a.toString() + "\t" + b.toString()
 
 		if order[1].currHP > 0:
-			order = order[::-1]
+			order.reverse()
 		else:
 			print order[1].name + " is dead!"
 
