@@ -1,4 +1,5 @@
 import random
+import math
 
 class Entity:
 	def __init__(self, type):
@@ -14,7 +15,7 @@ class Creature(Entity):
 		self.power = power
 
 	def attack(self, target):
-		damage = self.power * random.randrange(0, 21) / 10.0
+		damage = math.floor(self.power * random.randrange(0, 21) / 10.0)
 		target.currHP = target.currHP - damage if target.currHP - damage >= 0 else 0
 
 		if damage > self.power * 1.25:

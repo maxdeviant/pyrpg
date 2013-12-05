@@ -32,6 +32,7 @@ def battle(a, b):
 
 # battle(goblin, guard)
 beam.cast(guard)
-print beam.toString()
+# print beam.toString()
+print guard.toString()
 goblin.attack(guard)
 print guard.toString()
