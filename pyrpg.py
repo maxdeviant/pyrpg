@@ -1,5 +1,7 @@
-import entity
 import random
+
+import entity
+import item
 
 goblin = entity.Creature("Goblin", 30, 5)
 guard = entity.Creature("Guard", 40, 6)
@@ -30,9 +32,7 @@ def battle(a, b):
 		else:
 			print order[1].name + " is dead!"
 
-# battle(goblin, guard)
-beam.cast(guard)
-# print beam.toString()
-print guard.toString()
-goblin.attack(guard)
-print guard.toString()
+scimitar = item.Weapon("Iron Scimitar", "Sword", "Uncommon", 4)
+print scimitar.toString()
+shield = item.Armor("Gilded Shield", "Shield", "Legendary", 20)
+print shield.toString()
